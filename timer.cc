@@ -41,7 +41,7 @@ bool timer::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
  
   if(running and not paused){ 
     cr->save();   
-    cr->set_source_rgb(1.0, 1.0, 1.0);
+    cr->set_source_rgb(.5, .5, 1.0);
     cr->paint();	  
     cr->translate(width/2, height/2); 
     cr->set_source(clock_img, -clock_img->get_width()/2, -clock_img->get_height()/2);
@@ -80,9 +80,8 @@ bool timer::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
   // if paused then you need to save the draw information
   } else if (paused and running) {
     cr->save();   
-    cr->set_source_rgb(1.0, 1.0, 1.0);
-    cr->paint();	   
-   
+    cr->set_source_rgb(.5, .5, 1.0);
+    cr->paint();	    
     cr->translate(width/2, height/2);
     cr->set_source(clock_img, -clock_img->get_width()/2, -clock_img->get_height()/2);
     cr->paint(); 
@@ -100,7 +99,7 @@ bool timer::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
     cr->arc(0, 0, 80, -1*(M_PI/2) , piHours*M_PI - M_PI/2);
     cr->stroke();
     
-    cr->set_source_rgb(.5, .5, 1.0); 
+    cr->set_source_rgb(.5, 1.0, .5); 
     cr->translate(75, -220); 
     cr->set_font_size(30);
     cr->show_text("Paused");
@@ -111,6 +110,9 @@ bool timer::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
     cr->show_text("Paused");
     cr->save();*/
   } 
+  else if(!running && !paused){
+    
+  }
   return true;
 }
 

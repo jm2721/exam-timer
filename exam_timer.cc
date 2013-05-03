@@ -64,7 +64,7 @@ exam_timer::exam_timer() :
   m_spinbutton_minutes.set_wrap();  
   m_spinButtonBox.pack_start(m_spinbutton_minutes);
   m_spinbutton_minutes.show();
-  
+    
   m_spinbutton_seconds.set_wrap(); 
   m_spinButtonBox.pack_start(m_spinbutton_seconds); 
   m_spinbutton_seconds.show();
@@ -73,17 +73,21 @@ exam_timer::exam_timer() :
   m_start_button.show();
   m_start_button.signal_clicked().connect(sigc::mem_fun(*this, &exam_timer::start) );
 
+  
   m_hbox.pack_start(m_pause_button);
   m_pause_button.show();
   m_pause_button.signal_clicked().connect(sigc::mem_fun(*this, &exam_timer::pause) ); 
+  m_pause_button.set_sensitive(false);
 
   m_hbox.pack_start(m_resume_button);
   m_resume_button.show();
   m_resume_button.signal_clicked().connect(sigc::mem_fun(*this, &exam_timer::resume) );
+  m_resume_button.set_sensitive(false);
 
   m_hbox.pack_start(m_stop_button);
   m_stop_button.show();
   m_stop_button.signal_clicked().connect(sigc::mem_fun(*this, &exam_timer::stop) );  
+  m_stop_button.set_sensitive(false);  
   m_spinButtonBox.show();
  
   timerArea.set_size_request(500, 500); 
@@ -101,20 +105,32 @@ void exam_timer::start()
   input_minutes = m_spinbutton_minutes.get_value_as_int();
   input_seconds = m_spinbutton_seconds.get_value_as_int();
   timerArea.input(true, false, input_hours, input_minutes, input_seconds);
+  m_start_button.set_sensitive(false);
+  m_pause_button.set_sensitive(true);  
+  m_stop_button.set_sensitive(true);
+  
 }
 
 void exam_timer::pause()
 {
   timerArea.input(false, true, timerArea.get_hour_value(), timerArea.get_min_value(), timerArea.get_sec_value());
+  m_resume_button.set_sensitive(false);     
+  m_stop_button.set_sensitive(true); 
+  m_resume_button.set_sensitive(true);
 }
 
 void exam_timer::resume()
 {
   timerArea.input(true, false, timerArea.get_hour_value(), timerArea.get_min_value(), timerArea.get_sec_value());
+  
 }
 
 void exam_timer::stop()
 {
   //sets everything back to 0
   timerArea.input(false, false, 0, 0, 0);
+  m_start_button.set_sensitive(true);
+  m_pause_button.set_sensitive(false); 
+  m_resume_button.set_sensitive(false);
+
 }
