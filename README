@@ -1,9 +1,0 @@
-An exam timer with pause, stop, resume buttons. Is a work in progress. Will add more features as time goes on.
-Written in C++ using gtkmm graphics library.
-
-We added spinbuttons for the user to choose how much time. Start, stop, pause, resume buttons functional.
-Timer operates by filling up three concentric circles, of which the outermost is seconds, middle is minutes
-and innermost is hours. Seconds and minutes are divided into 60 units more or less, so each minute/second 
-increases the circle by about 6 degrees. Hours are divided into 24 units. So every time an hour ends, circle
-increases by about 15 degrees. When stopped, clock is not visible. In future, will likely add a message to
-notify user that time has ended, instead of just having the clock disappear.  
