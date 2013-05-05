@@ -20,7 +20,7 @@ exam_timer::exam_timer() :
   m_label_hours("Hours: "),
   m_label_minutes("Minutes: "),
   m_label_seconds("Seconds: "),
-  m_label_explanation("Blue ring = hours. Green = minutes. Red = seconds. Time's up when all is full."),
+  m_label_explanation("Innermost ring = hours. Middle ring = minutes. Outermost ring = seconds. Time's up when all is full."),
 
   //creates the range of the spinbuttons
   m_adjustment_hours( Gtk::Adjustment::create(0.0, 0.0, 24.0, 1.0, 5.0, 0.0)),
@@ -105,10 +105,10 @@ void exam_timer::start()
   input_minutes = m_spinbutton_minutes.get_value_as_int();
   input_seconds = m_spinbutton_seconds.get_value_as_int();
   timerArea.input(true, false, input_hours, input_minutes, input_seconds);
-  m_start_button.set_sensitive(false);
+
+//  m_start_button.set_sensitive(false);
   m_pause_button.set_sensitive(true);  
   m_stop_button.set_sensitive(true);
-  
 }
 
 void exam_timer::pause()
@@ -122,13 +122,13 @@ void exam_timer::pause()
 void exam_timer::resume()
 {
   timerArea.input(true, false, timerArea.get_hour_value(), timerArea.get_min_value(), timerArea.get_sec_value());
-  
+  m_resume_button.set_sensitive(false);  
 }
 
 void exam_timer::stop()
 {
   //sets everything back to 0
-  timerArea.input(false, false, 0, 0, 0);
+  timerArea.input(false, false, 0.0, 0.0, 0.0);
   m_start_button.set_sensitive(true);
   m_pause_button.set_sensitive(false); 
   m_resume_button.set_sensitive(false);

@@ -30,7 +30,7 @@ class exam_timer : public Gtk::Window
     void resume();
     void stop();
   private:
-    int input_hours, input_minutes, input_seconds;
+    double input_hours, input_minutes, input_seconds;
 };
 
 #endif //EXAM_TIME_H
