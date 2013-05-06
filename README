@@ -1,0 +1,5 @@
+Exam Timer built with gtkmm graphics library
+Spinbuttons regulate how the user inputs the time. Timer operates by filling up three concentric circles, of which the outermost is seconds, middle is minutes
+and innermost is hours. Seconds and minutes are divided into 60 units more or less, so each minute/second 
+increases the circle by about 6 degrees. Hours are divided into 24 units. So every time an hour ends, circle
+increases by about 15 degrees. A kind of obnoxious flashing TIME'S UP message appears when timer ends.
